@@ -37,23 +37,26 @@
  * 
  */
 
-
+import java.util.Scanner;
 public class HelloHello{
   
   public static void main(String[] args){
  
     /* defult number of time to print the message */
-    int num = 1;
-    
+    /*int num = 1;
     /* update number of times to print message if a command 
      * line argument is present */
-    if( args.length > 0 ){
+   /* if( args.length > 0 ){
       num = Integer.parseInt(args[0]);
-    }
-    
+    }*/
+    Scanner a = new Scanner(System.in);
+    int num = a.nextInt();
     /* print out the message num times */
     for(int i=0; i<num; i+=1){
-      System.out.println("Hello, World!");
+      for(int j=0;j<num;j+=1){
+        System.out.print("Q");
+      }
+      System.out.println();
     } 
     
   } // end main method
