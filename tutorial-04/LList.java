@@ -1,3 +1,4 @@
+
 public class LList implements Comparable<LList>{
  protected Node head;
  protected Node tail;
@@ -82,8 +83,11 @@ public class LList implements Comparable<LList>{
   }else{
    tail.setNext(n);
    tail = n;
+//   System.out.println(this.tail.data);
   }
   size += 1;
+//  System.out.println(this.toString());
+//  System.out.println(this.tail.data);
   return this;
  }
  
@@ -127,6 +131,13 @@ public class LList implements Comparable<LList>{
      Node f= head;
      head=head.next;
      size-=1;
+     int count=0;
+     Node current= head;
+     while(count<size-1){
+       current=current.next;
+       count++;
+     }
+     tail=current;     
      return f.data;
    }else{
   return null;
@@ -147,8 +158,15 @@ public class LList implements Comparable<LList>{
   Node f= current.next;
   try{current.next=current.next.next;}catch(NullPointerException e){current.next=null;}
   size-=1;
+  count=0;
+      current= head;
+     while(count<size-1){
+       current=current.next;
+       count++;
+     }
+     tail=current;     
   try{return f.data;}catch(NullPointerException e){return null;}
- } 
+ }
  }
  /* find element in list */
  public int find(String d){
@@ -170,6 +188,12 @@ public class LList implements Comparable<LList>{
    if(a.toString().equals(b.toString())){return true;}else{return false;}
  
  }
+ public static boolean same(LList a, java.util.ArrayList<String> b){
+   try{
+     for(int i=0;i<a.size;i++){if(!a.get(i).equals(b.get(i))){return false;}}
+   }catch(ArrayIndexOutOfBoundsException e){return false;}
+   return true;
+ }
  @Override
  public int compareTo(LList o){
   return size - o.size;
@@ -177,9 +201,12 @@ public class LList implements Comparable<LList>{
 
  public static void main(String[] args){
    LList a = new LList(new Node("aa",new Node("bb",new Node("cc"))));
+
    LList b = new LList(new Node("aa",new Node("bb",new Node("cc"))));
+      a.size=b.size=3;
    System.out.println(a.toString());
    System.out.println(b.toString());
+   System.out.println(same(a,b));
  }
  
  @Override
